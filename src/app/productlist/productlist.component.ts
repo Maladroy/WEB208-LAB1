@@ -81,3 +81,60 @@ export class ProductlistComponent implements OnInit {
   //   return Array(Math.round(n)).fill(null);
   // }
 }
+
+
+const heli_imp = new Card(
+  "005",
+  "Heli-imp",
+  4,
+  1,
+  ["demonoid"],
+  {
+    effect: () => { }, //FuckEmUp() Find card with lowest HP then swap them with current attacker
+    requirements: ["opp", "weakestTarget"],
+    event: "onAttack",
+    type: "attack"
+  }
+);
+
+const roidruid = new Card(
+  "006",
+  "Roidruid", //A.K.A Druid with STR build
+  7,
+  7,
+  ["humanoid"],
+  {
+    effect: () => { }, //BuildDifferent(1:damage) Randomly move to front row, dealing damage to allies. Yes. To allies.
+      requirements: ["own"],
+    event: "onAttack",
+    type: "attack"
+  }
+);
+
+const ouroboros_dog = new Card(
+  "007",
+  "Ouroboros Dog", //A dog chasing his tail
+  1,
+  2,
+  ["animal"],
+  {
+    effect: () => spawnAlly(dog, 0), //UnOuroboroboros() Spawn dog onHit
+    requirements: ["own"],
+    event: "onHit",
+    type: "spawn"
+  }
+);
+
+const dog = new Card(
+  "008",
+  "Dog", //A dog not chasing his tail
+  2,
+  1,
+  ["animal"],
+  {   
+    effect: () => increaseHPToTypes(1, ["animal"]),
+    requirements: ["own"],
+    event: "onSpawn",
+    type: "buff",
+}
+);
