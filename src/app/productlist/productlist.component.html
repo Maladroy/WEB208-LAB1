@@ -2,7 +2,7 @@
   <h1 class="p-3 fs-2 border-bottom">Product List</h1>
   <div class="mb-2 p-3">
     <label class="me-4" for="filter">Filter: </label>
-    <input [(ngModel)]="filter" class="w-25 px-2" type="text" />
+    <input [(ngModel)]="listFilter" class="w-25 px-2" type="text" />
   </div>
   <div class="mx-auto w-full">
     <table class="table table-striped text-left">
@@ -17,50 +17,24 @@
         </tr>
       </thead>
       <tbody id="products">
-        <tr *ngFor="let product of products; let l = last">
+        <tr *ngFor="let p of products; let l = last">
           <td>
             <img
-              style="height: 64px; width: 64px"
               class="p-1"
-              [src]="product.imageUrl"
+              [src]="p.imageUrl"
+              [title]="p.productName | uppercase"
+              width="50px"
             />
           </td>
-          <td>{{ product.productName }}</td>
-          <td>{{ product.productCode }}</td>
-          <td>{{ product.releaseDate }}</td>
-          <td>{{ product.price }}</td>
+          <td>{{ p.productName }}</td>
+          <td>{{ p.productCode }}</td>
+          <td>{{ p.releaseDate }}</td>
+          <td>{{ p.price | currency }}</td>
           <td>
-            <div class="position-relative">
-              <div
-                class="overflow-hidden"
-                title="rating"
-                [style.width.px]="(product.starRating / 5) * 90"
-              >
-                <div [style.width.px]="90">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>
-                <div
-                  class="position-absolute"
-                  [style]="{
-                    width: '100px',
-                    'z-index': '2',
-                    top: '0',
-                    left: '0'
-                  }"
-                >
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-              </div>
-              <!-- <i *ngFor="let _ of rating(product.starRating)" class="fa-solid fa-star"></i> -->
-            </div>
+            <app-star
+              [rating]="p.starRating"
+              (ratingClicked)="displayRating($event)"
+            ></app-star>
           </td>
         </tr>
       </tbody>

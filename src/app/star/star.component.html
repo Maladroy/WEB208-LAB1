@@ -1,0 +1,26 @@
+<div (click)="onClick()" class="position-relative">
+  <div class="overflow-hidden" title="rating" [style.width.px]="starWidth">
+    <div [style.width.px]="90">
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+    </div>
+    <div
+      class="position-absolute"
+      [style]="{
+        width: '100px',
+        'z-index': '2',
+        top: '0',
+        left: '0'
+      }"
+    >
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+    </div>
+  </div>
+</div>

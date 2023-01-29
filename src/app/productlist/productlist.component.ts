@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../interface/product';
-
+import { StarComponent } from '../star/star.component';
 @Component({
   selector: 'app-productlist',
   templateUrl: './productlist.component.html',
@@ -9,7 +9,7 @@ import { IProduct } from '../interface/product';
 
 
 export class ProductlistComponent implements OnInit {
-  listProduct: IProduct[] = [];
+  listProducts: IProduct[] = [];
   products: IProduct[] = [
     {
       "productId": 1,
@@ -62,79 +62,29 @@ export class ProductlistComponent implements OnInit {
       "imageUrl": "http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
     }
   ];
-  private _filterValue: string = '';
+  private _listFilter: string = '';
 
+  constructor() { }
   ngOnInit(): void {
-    this.listProduct = this.products;
+    this.listProducts = this.products;
   }
 
-  get filter() {
-    return this._filterValue;
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.products = this.listFilter ?
+      this.performFilter(this.listFilter) : this.listProducts;
+  }
+  performFilter(filterBy: string): IProduct[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.listProducts.filter((product: IProduct) =>
+      product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
-  set filter(value: string) {
-    this._filterValue = value;
-    this.products = this.listProduct.filter(p => p.productName.toLowerCase().includes(this._filterValue.toLowerCase()))
+  displayRating(stars: string) {
+    alert(`Sản phẩm có đánh giá là ${stars} sao!`)
   }
 
-  // rating(n: number) {
-  //   return Array(Math.round(n)).fill(null);
-  // }
 }
-
-
-const heli_imp = new Card(
-  "005",
-  "Heli-imp",
-  4,
-  1,
-  ["demonoid"],
-  {
-    effect: () => { }, //FuckEmUp() Find card with lowest HP then swap them with current attacker
-    requirements: ["opp", "weakestTarget"],
-    event: "onAttack",
-    type: "attack"
-  }
-);
-
-const roidruid = new Card(
-  "006",
-  "Roidruid", //A.K.A Druid with STR build
-  7,
-  7,
-  ["humanoid"],
-  {
-    effect: () => { }, //BuildDifferent(1:damage) Randomly move to front row, dealing damage to allies. Yes. To allies.
-      requirements: ["own"],
-    event: "onAttack",
-    type: "attack"
-  }
-);
-
-const ouroboros_dog = new Card(
-  "007",
-  "Ouroboros Dog", //A dog chasing his tail
-  1,
-  2,
-  ["animal"],
-  {
-    effect: () => spawnAlly(dog, 0), //UnOuroboroboros() Spawn dog onHit
-    requirements: ["own"],
-    event: "onHit",
-    type: "spawn"
-  }
-);
-
-const dog = new Card(
-  "008",
-  "Dog", //A dog not chasing his tail
-  2,
-  1,
-  ["animal"],
-  {   
-    effect: () => increaseHPToTypes(1, ["animal"]),
-    requirements: ["own"],
-    event: "onSpawn",
-    type: "buff",
-}
-);
