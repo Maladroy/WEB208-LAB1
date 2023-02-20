@@ -1,25 +1,56 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark px-5">
-    <!-- Brand -->
-    <a class="navbar-brand" href="#">FPoly Product Manager</a>
-    <!-- Links -->
-    <ul class="navbar-nav">
+<nav class="flex text-xl items-center w-11/12 m-auto py-3 gap-5 font-bold">
+  <!-- Brand -->
+  <img src="{{ logo }}" alt="" class="object-fit w-1/12" />
+  <!-- Links -->
+  <ul class="list-none flex gap-3">
     <li class="nav-item">
-    <a class="nav-link" href="#">Home</a>
+      <a class="nav-link" href="#">Bảng Điều Khiển</a>
     </li>
     <li class="nav-item">
-    <a class="nav-link" href="#">Product list</a>
+      <a class="nav-link" href="#">Giới Thiệu</a>
     </li>
-    </ul>
-    <ul class="nav navbar-nav ml-auto">
-    <!-- Dropdown -->
-    <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-    Manager
-    </a>
-    <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Login</a>
-    <a class="dropdown-item" href="#">Cart</a>
-    </div>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Dự án</a>
     </li>
-    </ul>
-    </nav>
+  </ul>
+  <div class="ml-auto flex">
+    <div class="search-icon"></div>
+    <input
+      type="text"
+      name="search"
+      id="search"
+      class="grow px-2 py-1 font-sans text-sm border-2 border-r-0 border-black"
+      placeholder="Tìm Kiếm"
+    />
+    <button
+      class="px-5 border-2 border-l-0 border-black hover:bg-black hover:text-white transition-colors"
+    >
+      Tìm
+    </button>
+  </div>
+</nav>
+
+<!-- <nav class="w-4/12 text-center mt-10 fixed text-white">
+  <div class="wrapper text-6xl font-bold">
+    <a
+      class="block mb-5 hover:bg-amber-300 hover:text-black transition-colors"
+      href="#"
+      >FPoly Quản Lý</a
+    >
+    <a
+      class="nav-link hover:bg-lime-300 hover:text-black block transition-colors mb-5"
+      href="#"
+      >Bảng Điều Khiển</a
+    >
+    <a
+      class="nav-link hover:bg-cyan-300 hover:text-black block transition-colors mb-5"
+      href="#"
+      >Giới Thiệu</a
+    >
+    <a
+      class="nav-link hover:bg-rose-300 hover:text-black block transition-colors mb-5"
+      href="#"
+      >Dự án</a
+    >
+  </div>
+</nav> -->
