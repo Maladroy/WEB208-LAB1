@@ -1,0 +1,72 @@
+<div class="flex items-center justify-center h-screen">
+  <form
+    class="p-10 w-3/12 mx-auto bg-white rounded-xl shadow-lg space-y-6"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <h2 class="text-2xl font-bold">Login</h2>
+    <div>
+      <label for="username" class="block font-medium">Username</label>
+      <input
+        type="text"
+        id="username"
+        formControlName="username"
+        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+      />
+    </div>
+    <div
+      *ngIf="
+        (loginFormInstance.username.invalid &&
+          loginFormInstance.username.dirty) ||
+        loginFormInstance.username.touched ||
+        submitted
+      "
+      class="text-red-500 mt-1 text-sm"
+    >
+      <p *ngIf="loginFormInstance.username.errors?.required">
+        Username is required
+      </p>
+      <p *ngIf="loginFormInstance.username.errors?.minlength">
+        Username must be at least
+        {{ loginFormInstance.username.errors?.minlength.requiredLength }}
+        characters long
+      </p>
+    </div>
+    <div>
+      <label for="password" class="block font-medium">Password</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+      />
+    </div>
+    <div
+      *ngIf="
+        (loginFormInstance.password.invalid &&
+          loginFormInstance.password.dirty) ||
+        loginFormInstance.password.touched ||
+        submitted
+      "
+      class="text-red-500 mt-1 text-sm"
+    >
+      <p *ngIf="loginFormInstance.password.errors?.required">
+        Password is required
+      </p>
+    </div>
+    <div>
+      <button
+        type="submit"
+        class="transition-colors px-4 py-2 bg-indigo-600 rounded-md text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        Login
+      </button>
+      <a
+        routerLink="/register"
+        class="transition-colors rounded-md inline-block px-4 py-2 float-right text-indigo-600 hover:text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        Create a new account
+      </a>
+    </div>
+  </form>
+</div>

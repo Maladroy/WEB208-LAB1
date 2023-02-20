@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import environment from 'src/environments/environment';
 import jwt_decode from 'jwt-decode';
+
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,9 @@ export class AuthService {
 
     // Logs in a user and returns the JWT token
     login(username: string, password: string): Observable<string> {
-        return this.http.post<any>(`${this.apiUrl}/login`, { username, password })
+        return this.http.post<any>(`${this.apiUrl}/user/login`, { username: username, password: password }, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json')
+        })
             .pipe(
                 map(response => {
                     if (response && response.token) {
@@ -52,6 +55,7 @@ export class AuthService {
         }
         try {
             const decodedToken = jwt_decode(token) as { role: string };
+
             return decodedToken.role;
         } catch (error) {
             console.error(error);

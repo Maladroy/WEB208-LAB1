@@ -18,12 +18,12 @@ export class TeamLeaderAuthGuard implements CanActivate {
         const userRole = this.authService.getAuthenticatedUserRole();
 
         // If the user is a team leader, allow access to the route
-        if (userRole === 'Team Leader') {
+        if (userRole === 'teamLeader') {
             return true;
         }
 
         // If the user is not a team leader, redirect to the home page
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
         return false;
     }
 }
