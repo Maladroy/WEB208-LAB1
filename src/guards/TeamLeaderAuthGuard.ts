@@ -22,7 +22,10 @@ export class TeamLeaderAuthGuard implements CanActivate {
             return true;
         }
 
+        if (!userRole) alert("Bạn phải đăng nhập trước!")
+        else alert("Bạn không có quyền vào trang này!")
         // If the user is not a team leader, redirect to the home page
+
         this.router.navigate(['/']);
         return false;
     }
