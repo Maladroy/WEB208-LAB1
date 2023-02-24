@@ -5,12 +5,14 @@ import { TeamLeaderRoutingModule } from './team-leader-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from '../header/header.component';
 import { AddProjectComponent } from './add-project/add-project.component';
+import { UpdateProjectComponent } from './update-project/update-project.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     HeaderComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    UpdateProjectComponent
   ],
   imports: [
     CommonModule,

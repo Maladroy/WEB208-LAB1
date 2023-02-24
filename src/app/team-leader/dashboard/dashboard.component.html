@@ -29,7 +29,7 @@
         <div *ngFor="let project of projects">
           <div
             class="bg-[#BAFF00] hover:brightness-50 [#66FF03] hover:cursor-pointer text-black p-5"
-            [ngStyle]="{ backgroundColor: project.overdue && '#ffffff' }"
+            [ngStyle]="{ backgroundColor: !project.remainTime && '#ffffff' }"
             (click)="toggleProject(project._id)"
           >
             <div class="py-4 border-b border-black">
@@ -89,7 +89,7 @@
         </div>
       </div>
       <div *ngIf="detailProject">
-        <div class="bg-white px-4 gap-5 pb-5">
+        <div class="bg-white px-4 gap-5 pb-1.5">
           <div class="text-black font-sans">
             <p
               class="text-xl font-bold font-mono uppercase py-4 border-b border-black"
@@ -120,6 +120,7 @@
               </button>
               <a
                 class="float-right cursor-pointer hover:text-emerald-500 text-black transition-colors"
+                href="{{ 'team-leader/update-project/' + detailProject._id }}"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -151,9 +152,9 @@
               </p>
             </div>
           </div>
-          <div *ngIf="detailTasks" class="text-black font-sans">
+          <div *ngIf="detailTasks.length" class="text-black font-sans">
             <p class="text-lg font-semibold font-mono uppercase mt-4">Tasks</p>
-            <div class="text-md" *ngFor="let task of detailTasks">
+            <div class="text-md pb-5" *ngFor="let task of detailTasks">
               <div class="flex flex-row justify-end gap-2 mt-4">
                 <button
                   class="cursor-pointer hover:text-emerald-500 text-black transition-colors"
@@ -201,7 +202,7 @@
                 <p>Status: {{ task.status }}</p>
                 <p>
                   Members:
-                  <span class="ml-2" *ngFor="let member of task.members">{{
+                  <span class="ml-0.5" *ngFor="let member of task.members">{{
                     member
                   }}</span>
                 </p>

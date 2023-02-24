@@ -61,6 +61,10 @@ export class LoginComponent implements OnInit {
           }
         }
       );
+
+    if (this.errorMessage) {
+      alert(this.errorMessage)
+    }
   }
 
   get loginFormInstance(): any {

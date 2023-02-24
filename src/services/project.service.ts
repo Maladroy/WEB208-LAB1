@@ -25,6 +25,9 @@ export class ProjectService {
     }
 
 
+    getProjectByID(id: string): Observable<IProject> {
+        return this.http.get<IProject>(`${this.apiUrl}/project/${id}`);
+    }
 
     // Get all projects
     getProjects(): Observable<IProject[]> {
@@ -59,8 +62,8 @@ export class ProjectService {
     }
 
     // Update a project
-    updateProject(project: IProject): Observable<IProject> {
-        return this.http.put<IProject>(`${this.apiUrl}/project/${project._id}`, project);
+    updateProject(projectID: string, project: IProject): Observable<IProject> {
+        return this.http.put<IProject>(`${this.apiUrl}/project/${projectID}`, project);
     }
 
     // Delete a project

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ProjectService } from 'src/services/project.service';
 import { AuthService } from 'src/services/auth.service';
 import jwt_decode from 'jwt-decode';
-import { IProject } from 'src/models/project.model';
 import * as uuid from 'uuid';
 
 
