@@ -3,6 +3,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
 
+function redirect(role: string, router: Router): void {
+  if (role === 'teamLeader') {
+    router.navigate(['team-leader']);
+  } else if (role === 'employee') {
+    router.navigate(['employee']);
+  }
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,6 +34,12 @@ export class LoginComponent implements OnInit {
       username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+
+    if (this.authService.isLoggedIn()) {
+      const role = this.authService.getAuthenticatedUserRole();
+      redirect(role ?? '', this.router)
+    }
+
   }
 
   onSubmit() {
@@ -37,11 +51,7 @@ export class LoginComponent implements OnInit {
         () => {
           this.submitted = true;
           const role = this.authService.getAuthenticatedUserRole();
-          if (role === 'teamLeader') {
-            this.router.navigate(['team-leader']);
-          } else if (role === 'employee') {
-            this.router.navigate(['employee']);
-          }
+          redirect(role ?? "", this.router)
         },
         (error) => {
           if (error.status === 401) {

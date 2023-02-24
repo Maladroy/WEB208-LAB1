@@ -1,56 +1,96 @@
-<nav class="flex text-xl items-center w-11/12 m-auto py-3 gap-5 font-bold">
-  <!-- Brand -->
-  <img src="{{ logo }}" alt="" class="object-fit w-1/12 mx-4" />
-  <!-- Links -->
-  <ul class="list-none flex gap-3">
-    <li class="nav-item">
-      <a class="nav-link" href="/dashboard">Bảng Điều Khiển</a>
-    </li>
-    <li class="nav-item cursor-pointer">
-      <a class="nav-link" (click)="logout()">Đăng Xuất</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/projects">Dự án</a>
-    </li>
-  </ul>
-  <div class="ml-auto flex">
-    <div class="search-icon"></div>
-    <input
-      type="text"
-      name="search"
-      id="search"
-      class="grow px-2 py-1 font-sans text-sm border-2 border-r-0 border-black"
-      placeholder="Tìm Kiếm"
-    />
-    <button
-      class="px-5 border-2 border-l-0 border-black hover:bg-black hover:text-white transition-colors"
+<div
+  class="z-50 fixed flex flex-col items-center w-16 h-full overflow-hidden text-gray-400 dark:text-[#222222] dark:bg-white bg-gray-900"
+>
+  <a class="flex items-center justify-center mt-3" href="#">
+    <svg
+      class="w-8 h-8 fill-current"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
     >
-      Tìm
-    </button>
+      <path
+        d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"
+      />
+    </svg>
+  </a>
+  <div class="flex flex-col items-center mt-3 border-t border-[#222222]">
+    <a
+      class="flex items-center justify-center w-12 h-12 mt-2 text-gray-200 bg-[#222222] rounded"
+      href="#"
+    >
+      <svg
+        class="w-6 h-6 stroke-current"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+        />
+      </svg>
+    </a>
+    <a
+      class="flex items-center justify-center w-12 h-12 mt-2 rounded hover:bg-[#222222] hover:text-gray-300"
+      href="#"
+    >
+      <svg
+        class="w-6 h-6 stroke-current"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        />
+      </svg>
+    </a>
+    <div class="border-b border-gray-500 w-full h-5"></div>
+    <a
+      class="flex items-center justify-center w-12 h-12 mt-2 rounded hover:bg-[#222222] hover:text-gray-300"
+      href="#"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+    </a>
   </div>
-</nav>
-
-<!-- <nav class="w-4/12 text-center mt-10 fixed text-white">
-  <div class="wrapper text-6xl font-bold">
-    <a
-      class="block mb-5 hover:bg-amber-300 hover:text-black transition-colors"
-      href="#"
-      >FPoly Quản Lý</a
+  <button
+    class="flex items-center justify-center w-16 h-16 mt-auto bg-[#222222] hover:bg-black hover:text-gray-300"
+    (click)="logout()"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#ffffff"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     >
-    <a
-      class="nav-link hover:bg-lime-300 hover:text-black block transition-colors mb-5"
-      href="#"
-      >Bảng Điều Khiển</a
-    >
-    <a
-      class="nav-link hover:bg-cyan-300 hover:text-black block transition-colors mb-5"
-      href="#"
-      >Giới Thiệu</a
-    >
-    <a
-      class="nav-link hover:bg-rose-300 hover:text-black block transition-colors mb-5"
-      href="#"
-      >Dự án</a
-    >
-  </div>
-</nav> -->
+      <path
+        d="M10 3H6a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h4M16 17l5-5-5-5M19.8 12H9"
+      />
+    </svg>
+  </button>
+</div>

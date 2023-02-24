@@ -1,9 +1,12 @@
-export interface Project {
+import { ITask } from "./task.model";
+export interface IProject {
     _id: string;
     name: string;
     description: string;
-    startDate: Date;
-    endDate: Date;
+    startDate: string | Date;
+    endDate: string | Date;
+    remainTime?: number;
     status: string;
-    employees: string[];
+    tasks: string[];
+    overdue?: boolean;
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Project } from 'src/models/project.model';
+import { IProject } from 'src/models/project.model';
 import { ProjectService } from 'src/services/project.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { ProjectService } from 'src/services/project.service';
   styleUrls: ['./project-list.component.css']
 })
 export class ProjectListComponent {
-  projects: Project[] = [];
+  projects: IProject[] = [];
 
   constructor(private projectService: ProjectService) { }
 

@@ -63,4 +63,10 @@ export class AuthService {
             return null;
         }
     }
+
+    getUser(userID: string) {
+        return this.http.get<any>(`${this.apiUrl}/user/${userID}`, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json')
+        })
+    }
 }
