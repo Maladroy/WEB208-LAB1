@@ -4,9 +4,8 @@ import { ProjectService } from 'src/services/project.service';
 import { TaskService } from 'src/services/task.service';
 import jwt_decode from 'jwt-decode';
 import { IProject } from 'src/models/project.model';
-import { map } from 'rxjs';
 import { ITask } from 'src/models/task.model';
-import { assign } from 'lodash';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,6 +23,7 @@ export class DashboardComponent implements OnInit {
     private authService: AuthService,
     private projectService: ProjectService,
     private taskService: TaskService,
+    private router: Router
 
   ) {
 
@@ -34,8 +34,6 @@ export class DashboardComponent implements OnInit {
       role: string,
       id: string,
       username: string
-
-
     }
 
     this.role = this.authService.getAuthenticatedUserRole() as string
@@ -50,6 +48,7 @@ export class DashboardComponent implements OnInit {
   }
 
   toggleProject(_id: string) {
+    if (!_id) return;
     if (this.detailProject?._id == _id) this.detailProject = null
     else this.detailProject = this.projects.filter(p => p._id == _id)[0];
 
@@ -62,8 +61,13 @@ export class DashboardComponent implements OnInit {
         task.assignedTo.forEach(id => this.authService.getUser(id).subscribe(res => members.push(res.username)))
         task.members = await members;
       })
-      console.log(this.detailTasks);
     })
 
+  }
+
+  deleteProject(_id: string) {
+    if (confirm("Delete this project?")) {
+      this.projectService.deleteProject(_id).subscribe(() => this.router.navigate(['/']))
+    }
   }
 }

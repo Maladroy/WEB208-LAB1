@@ -1,10 +1,10 @@
-import { ITask } from "./task.model";
 export interface IProject {
     _id: string;
     name: string;
     description: string;
-    startDate: string | Date;
-    endDate: string | Date;
+    startDate: Date;
+    endDate: Date;
+    teamLeaderID: string,
     remainTime?: number;
     status: string;
     tasks: string[];

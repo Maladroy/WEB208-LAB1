@@ -8,12 +8,13 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class HeaderComponent {
   logo = "../../assets/logo.png"
+  role = 'employee'
 
   constructor(
     private authService: AuthService,
   ) {
+    this.role = this.authService.getAuthenticatedUserRole() as string
   }
-
 
 
   logout() {

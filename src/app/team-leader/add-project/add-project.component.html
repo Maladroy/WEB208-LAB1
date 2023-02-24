@@ -1,0 +1,135 @@
+<app-header></app-header>
+<div class="w-full max-w-md mx-auto pt-24">
+  <form
+    class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+    [formGroup]="projectForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="mb-4">
+      <label class="block text-gray-700 font-bold mb-2" for="name">
+        Project Name
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="name"
+        type="text"
+        placeholder="Enter project name"
+        formControlName="name"
+      />
+      <div
+        *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)"
+        class="text-red-500 mt-2 text-sm"
+      >
+        <div *ngIf="f['name'].errors?.['required']">
+          Project name is required
+        </div>
+      </div>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 font-bold mb-2" for="description">
+        Project Description
+      </label>
+      <textarea
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="description"
+        placeholder="Enter project description"
+        formControlName="description"
+      ></textarea>
+      <div
+        *ngIf="
+          f['description'].invalid &&
+          (f['description'].dirty || f['description'].touched)
+        "
+        class="text-red-500 mt-2 text-sm"
+      >
+        <div *ngIf="f['description'].errors?.['required']">
+          Project description is required
+        </div>
+      </div>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 font-bold mb-2" for="startDate">
+        Start Date
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="startDate"
+        name="startDate"
+        formControlName="startDate"
+        type="date"
+        required
+      />
+      <div
+        *ngIf="
+          f['startDate'].invalid &&
+          (f['startDate'].dirty || f['startDate'].touched)
+        "
+        class="text-red-500 mt-2 text-sm"
+      >
+        <div *ngIf="f['startDate'].errors?.['required']">
+          Project start date is required
+        </div>
+      </div>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 font-bold mb-2" for="endDate">
+        End Date
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="endDate"
+        name="endDate"
+        formControlName="endDate"
+        type="date"
+        required
+      />
+      <div
+        *ngIf="
+          f['endDate'].invalid && (f['endDate'].dirty || f['endDate'].touched)
+        "
+        class="text-red-500 mt-2 text-sm"
+      >
+        <div *ngIf="f['endDate'].errors?.['required']">
+          Project end date is required
+        </div>
+      </div>
+    </div>
+    <div class="my-4">
+      <label for="status" class="block text-sm font-medium text-gray-700"
+        >Status</label
+      >
+      <div class="mt-1">
+        <select
+          name="status"
+          id="status"
+          formControlName="status"
+          required
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        >
+          <option value="" selected disabled>-- Select Status --</option>
+          <option value="notStarted">Not Started</option>
+          <option value="inProgress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+      <div
+        *ngIf="
+          f['status'].invalid && (f['status'].dirty || f['status'].touched)
+        "
+        class="text-red-500 mt-2 text-sm"
+      >
+        <div *ngIf="f['status'].errors?.['required']">
+          Project status is required
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-between mt-8">
+      <button
+        class="bg-[#BAFF00] text-black hover:saturate-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="submit"
+      >
+        Create Project
+      </button>
+    </div>
+  </form>
+</div>

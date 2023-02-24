@@ -10,7 +10,6 @@ import environment from 'src/environments/environment';
 export class TaskService {
     private apiUrl = environment.apiUrl;
 
-
     constructor(private http: HttpClient) { }
 
     createTask(projectId: string, task: ITask, token: string): Observable<ITask> {

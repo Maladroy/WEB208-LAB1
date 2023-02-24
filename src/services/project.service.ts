@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import env from 'src/environments/environment';
 import { IProject } from '../models/project.model';
+import { AuthService } from './auth.service';
 
 function getElapsedTime(start: number, end: number) {
     let duration = end - start
@@ -17,8 +18,11 @@ function getElapsedTime(start: number, end: number) {
 })
 export class ProjectService {
     private apiUrl = env.apiUrl;
+    private token: string;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private authService: AuthService) {
+        this.token = this.authService.getToken()
+    }
 
 
 
@@ -47,7 +51,11 @@ export class ProjectService {
 
     // Create a project
     createProject(project: IProject): Observable<IProject> {
-        return this.http.post<IProject>(`${this.apiUrl}/project`, project);
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.token}`
+        });
+        return this.http.post<IProject>(`${this.apiUrl}/project`, project, { headers });
     }
 
     // Update a project
@@ -57,6 +65,10 @@ export class ProjectService {
 
     // Delete a project
     deleteProject(id: string): Observable<IProject> {
-        return this.http.delete<IProject>(`${this.apiUrl}/project/${id}`);
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.token}`
+        });
+        return this.http.delete<IProject>(`${this.apiUrl}/project/${id}`, { headers });
     }
 }
