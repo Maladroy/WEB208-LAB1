@@ -30,6 +30,19 @@ export class AuthService {
             );
     }
 
+    register(username: string, password: string): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}/user/register`, { username, password })
+            .pipe(
+                map(response => {
+                    if (response && response.token) {
+                        console.log(response);
+                        localStorage.setItem('currentUser', JSON.stringify(response));
+                        return response.token;
+                    }
+                })
+            );
+    }
+
     // Logs out the current user
     logout(): void {
         localStorage.removeItem('currentUser');

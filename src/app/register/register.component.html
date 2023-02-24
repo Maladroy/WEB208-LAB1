@@ -1,0 +1,66 @@
+<div class="flex items-center justify-center h-screen">
+  <form
+    class="p-10 w-3/12 mx-auto bg-white rounded-xl shadow-lg space-y-6"
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <h2 class="text-2xl font-bold">Register</h2>
+    <div>
+      <label for="username" class="block font-medium">Username</label>
+      <input
+        type="text"
+        id="username"
+        formControlName="username"
+        class="mt-1 py-2 focus:ring-[#BAFF00] focus:border-[#BAFF00] block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+      />
+    </div>
+    <div
+      *ngIf="
+        (f['username'].invalid && f['username'].dirty) ||
+        f['username'].touched ||
+        submitted
+      "
+      class="text-red-500 mt-1 text-sm"
+    >
+      <p *ngIf="f['username'].errors?.['required']">Username is required</p>
+      <p *ngIf="f['username'].errors?.['minlength']">
+        Username must be at least
+        {{ f['username'].errors?.['minlength'].requiredLength }}
+        characters long
+      </p>
+    </div>
+    <div>
+      <label for="password" class="block font-medium">Password</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        class="mt-1 py-2 focus:ring-[#BAFF00] focus:border-[#BAFF00] block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+      />
+    </div>
+    <div
+      *ngIf="
+        (f['password'].invalid && f['password'].dirty) ||
+        f['password'].touched ||
+        submitted
+      "
+      class="text-red-500 mt-1 text-sm"
+    >
+      <p *ngIf="f['password'].errors?.['required']">Password is required</p>
+    </div>
+    <div>
+      <button
+        type="submit"
+        class="transition-colors px-4 py-2 bg-[#BAFF00] rounded-md text-black hover:text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        Register
+      </button>
+      <a
+        routerLink="/login"
+        class="transition-colors rounded-md inline-block px-4 py-2 float-right text-indigo-600 hover:text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        Already have an account?
+      </a>
+    </div>
+  </form>
+</div>

@@ -45,8 +45,6 @@ export class AddProjectComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // temp fix
-
     if (this.projectForm.valid && confirm("Confirm creating task")) {
       this.projectService.createProject(this.projectForm.value).subscribe(() => {
         this.router.navigate(['/team-leader']);
